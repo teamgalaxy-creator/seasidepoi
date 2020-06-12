@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Realtor</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet-src.js" integrity="sha256-wc8X54qvAHZGQY6nFv24TKlc3wtO0bgAfqj8AutTIu0=" crossorigin="anonymous"></script>
+
+<!-- set width and height styles for map -->
+<style>
+#map {
+    width: 200vh;
+    height:100vh;
+}
+</style>
+
+</head>
+
+<body>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- place holder for map -->
+    <div id="map"></div>
+
+<script>
+
+    
+        var data = {
+"type": "FeatureCollection",
+"name": "data",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "ResturauntName": "Up The Creek Tavern", "Latitude": 40.434907, "Longitude": -74.2130348, "Adress": "350 W Front St, Keyport, NJ 07735, United States", "PhoneNo": "+1 732-497-0821", "RestaurantServices": "Bar & grill", "Speciality": " ", "Website": "http:\/\/www.keyportmarinebasin.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.2130348, 40.434907 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Sissy's at the Harbor", "Latitude": 40.417523, "Longitude": -74.035926, "Adress": "8 Simon Lake Dr, Atlantic Highlands, NJ 07716, United States", "PhoneNo": "+1 732-291-2218", "RestaurantServices": "Breakfast Restaurant", "Speciality": " ", "Website": "https://www.facebook.com/pages/Sissys-At-The-Harbor/115908075097800", "Google Reviews Rating": 4.5 }, "geometry": { "type": "Point", "coordinates": [  -74.03593259434683,40.41758364700198 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Inlet Cafe", "Latitude": 40.4028968, "Longitude": -73.9838183, "Adress": "3 Cornwall St, Highlands, NJ 07732, United States", "PhoneNo": "+1 732-872-9764", "RestaurantServices": "Seafood restaurant", "Speciality": "Seasonal seafood restaurant offering dockside dining with views of Sandy Hook Bay.", "Website": "http:\/\/www.inletcafe.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -73.9838183, 40.4028968 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Proving Ground Waterfront Dining", "Latitude": 40.4025717, "Longitude": -73.9835346, "Adress": "56 Shrewsbury Ave, Highlands, NJ 07732, United States", "PhoneNo": "+1 732-872-2266", "RestaurantServices": "Restaurant", "Speciality": "Casual-chic spot for modern pub eats, cocktails & Sunday brunch with waterfront views & fire pits.", "Website": "https:\/\/www.theprovingground.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -73.9835346, 40.4025717 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Bahrs Landing", "Latitude": 40.3973861, "Longitude": -73.9813389, "Adress": " 2 Bay Ave, Highlands, NJ 07732, United States", "PhoneNo": "+1 732-872-1245", "RestaurantServices": "Seafood restaurant", "Speciality": "No-frills joint serving straightforward seafood dishes in a nautical-themed space since 1917.", "Website": "https:\/\/bahrslandingnj.com\/", "Google Reviews Rating": 4.4 }, "geometry": { "type": "Point", "coordinates": [ -73.9813389, 40.3973861 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Moby's Lobster Deck", "Latitude": 40.3968387, "Longitude": -73.9812602, "Adress": "2 Bay Ave, Highlands, NJ 07732, United States", "PhoneNo": "+1 732-872-1245", "RestaurantServices": "Seafood restaurant", "Speciality": "Low-key, seasonal waterfront seafood restaurant with outside seating also offering a raw bar & beer.", "Website": "https:\/\/www.mobyslobsterdeck.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -73.9812602, 40.3968387 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Barnacle Bill's", "Latitude": 40.3758, "Longitude": -74.0137, "Adress": "1 1st St, Rumson, NJ 07760, United States", "PhoneNo": "+1 732-747-8396", "RestaurantServices": "Seafood restaurant", "Speciality": "Nautical decor backdrops pub grub & hearty servings of seafood in a casual waterfront sports bar.", "Website": "https:\/\/www.barnaclebillsrumson.com\/", "Google Reviews Rating": 4.5 }, "geometry": { "type": "Point", "coordinates": [ -74.0137, 40.3758 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Salt Creek Grille", "Latitude": 36.9323483, "Longitude": -96.28657935, "Adress": "4 Bingham Ave, Rumson, NJ 07760, United States", "PhoneNo": "+1 732-933-9272", "RestaurantServices": "Bar & grill", "Speciality": "Laid-back grill with burgers, steaks & other American cuisine plus a lively bar & river views.", "Website": "https:\/\/www.saltcreekgrille.com\/", "Google Reviews Rating": 4.4 }, "geometry": { "type": "Point", "coordinates": [  -74.01174639823631,40.37781170023435 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Boon Docks Fishery and Grill", "Latitude": 40.3544751, "Longitude": -74.0644018, "Adress": "1 Marine Park, Red Bank, NJ 07701, United States", "PhoneNo": "+1 732-747-7177", "RestaurantServices": "Seafood restaurant", "Speciality": "Seafood shack serving platters & sandwiches from a counter on the banks of the Navesink River.", "Website": "https:\/\/theboondocksfishery.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -74.0644018, 40.3544751 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Beach Tavern", "Latitude": 40.3360561, "Longitude": -73.9809156, "Adress": " 33 West St, Monmouth Beach, NJ 07750, United States", "PhoneNo": "+1 732-870-8999", "RestaurantServices": "Seafood restaurant", "Speciality": "Dockside eatery with marina views serving fine surf 'n' turf & cocktails in a convivial atmosphere.", "Website": "http:\/\/beachtavern.net\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -73.9809156, 40.3360561 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Sunsets", "Latitude": 40.1879377, "Longitude": -74.0260187, "Adress": "302 S Concourse, Neptune City, NJ 07753, United States", "PhoneNo": "+1 732-775-9911", "RestaurantServices": "Seafood restaurant", "Speciality": "Casual bar\/eatery offering seafood entrees & happy hours, plus outdoor seating & live entertainment.", "Website": " https://www.facebook.com/sunsetsnj/", "Google Reviews Rating": 3.9 }, "geometry": { "type": "Point", "coordinates": [  -74.02615447259846 , 40.188046726075804 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Klein's Fish Market", "Latitude": 40.1842671, "Longitude": -74.0249009, "Adress": "708 River Rd, Belmar, NJ 07719, United States", "PhoneNo": "+1 732-681-1177", "RestaurantServices": "Seafood restaurant", "Speciality": "Longtime, dockside seafood restaurant featuring a sushi bar & deck seating with river views", "Website": "http:\/\/kleinsfish.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.0249009, 40.1842671 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "9th Ave Pier", "Latitude": 40.1813052, "Longitude": -74.029694, "Adress": "905 River Rd, NJ-35, Belmar, NJ 07719, United States", "PhoneNo": "+1 732-749-3800", "RestaurantServices": "Bar", "Speciality": "Burgers, tacos & specialty cocktails are on offer at this American pub right at the Belmar Marina", "Website": "https:\/\/9thavepier.com\/", "Google Reviews Rating": 4.1 }, "geometry": { "type": "Point", "coordinates": [ -74.029694, 40.1813052 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Marina Grille", "Latitude": 40.1807099, "Longitude": -74.0293467, "Adress": "905 River Rd, NJ-35, Belmar, NJ 07719, United States", "PhoneNo": "+1 732-894-3211", "RestaurantServices": "Bar", "Speciality": "Scenic, modern American eatery with a spacious waterfront patio & a lineup of live entertainment", "Website": "https:\/\/marinagrillenj.com\/", "Google Reviews Rating": 4.1 }, "geometry": { "type": "Point", "coordinates": [ -74.0293467, 40.1807099 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Brielle River House", "Latitude": 40.1076637, "Longitude": -74.0489586, "Adress": "1 Ocean Ave #2046, Brielle, NJ 08730, United States", "PhoneNo": "Not Available ", "RestaurantServices": "American restaurant", "Speciality": "Waterside venue with a deck overlooking the inlet offering seafood, steak, burgers & cocktails.", "Website": "https:\/\/brielleriverhouse.com\/", "Google Reviews Rating": 4.1 }, "geometry": { "type": "Point", "coordinates": [ -74.0489586, 40.1076637 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Waypoint 622", "Latitude": 40.1074728, "Longitude": -74.0518588, "Adress": "622 Green Ave, Brielle, NJ 08730, United States", "PhoneNo": "+1 732-528-6665", "RestaurantServices": "New American restaurant", "Speciality": "Lively restaurant for New American cuisine & seafood, plus patio bar with marina views & live music.", "Website": "https:\/\/www.waypoint622.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.0518588, 40.1074728 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "The Pig and Parrot Sandbar", "Latitude": 40.107225, "Longitude": -74.052572, "Adress": "201 Union Ln, Brielle, NJ 08730, United States", "PhoneNo": "+1 732-528-7750", "RestaurantServices": "Bar & grill", "Speciality": "Seafood, burgers & sushi served in a low-key restaurant with a sleek bar, live music & river views.", "Website": "https:\/\/www.thepigandparrot.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -74.052572, 40.107225 ] } },
+
+{ "type": "Feature", "properties": { "ResturauntName": "River Rock Restaurant & Marina Bar", "Latitude": 40.0973803, "Longitude": -74.0876265, "Adress": "1600 NJ-70, Brick Township, NJ 08724, United States", "PhoneNo": "+1 732-840-1110", "RestaurantServices": "American restaurant", "Speciality": "This sports bar & American eatery directly on the river offers a party atmosphere & boat slips", "Website": "http:\/\/riverrockbricknj.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.0876265, 40.0973803 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Clarks Landing Dockside Bar & Grill", "Latitude": 40.0922203, "Longitude": -74.0583488, "Adress": "847 Arnold Ave, Point Pleasant, NJ 08742, United State", "PhoneNo": "+1 732-899-1111", "RestaurantServices": "American restaurant", "Speciality": " ", "Website": "https://www.docksidebargrill.com/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [  -74.05809365889601,40.09227505191295 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Jack Baker's Wharfside Restaurant and Patio Bar", "Latitude": 40.1019501, "Longitude": -74.0405923, "Adress": "101 Channel Dr, Point Pleasant Beach, NJ 08742, United States", "PhoneNo": "+1 732-892-9100", "RestaurantServices": "Seafood restaurant", "Speciality": "Casual eatery dishes up classic seafood meals in a relaxed venue with water views & outdoor seating.", "Website": "https:\/\/wharfsidenj.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.0405923, 40.1019501 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "The Shrimp Box & Outside The Box Patio Bar", "Latitude": 40.1016764, "Longitude": -74.0371269, "Adress": "75 Inlet Dr, Point Pleasant Beach, NJ 08742, United States", "PhoneNo": " +1 732-899-1637", "RestaurantServices": "Seafood restaurant", "Speciality": "Seafood & cocktails are served at this enduring waterfront eatery with nautical decor & patio seats.", "Website": "http:\/\/www.theshrimpbox.com\/", "Google Reviews Rating": 4.4 }, "geometry": { "type": "Point", "coordinates": [ -74.0371269, 40.1016764 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Red's Lobster Pot Restaurant", "Latitude": 40.102745, "Longitude": -74.038197, "Adress": "57 Inlet Dr, Point Pleasant Beach, NJ 08742, United States", "PhoneNo": "+1 732-295-6622", "RestaurantServices": "Seafood restaurant", "Speciality": "Seasonal fixture offers an array of classic seafood dishes in a snug venue with waterfront seating", "Website": "https:\/\/www.redslobsterpot.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -74.038197, 40.102745 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Pixie's Sunrise Marina Grill", "Latitude": 40.0617294, "Longitude": -74.0728073, "Adress": "1671 Beaver Dam Rd, Point Pleasant, NJ 08742, United States", "PhoneNo": "+1 732-899-5580", "RestaurantServices": "Breakfast Restaurant", "Speciality": " ", "Website": "https://www.facebook.com/SunriseMarinaGrille/ ", "Google Reviews Rating": 4.8 }, "geometry": { "type": "Point", "coordinates": [  -74.07280734366978,40.06172177801481 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Beacon 70", "Latitude": 40.064081, "Longitude": -74.133768, "Adress": "799 NJ-70, Brick Township, NJ 08723, United States", "PhoneNo": "+1 848-232-4235", "RestaurantServices": "American restaurant", "Speciality": "Restaurant & bar serving American food & cocktails in a steampunk space with TVs & marina views.", "Website": "https:\/\/beacon70.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.133768, 40.064081 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Channel Marker Cafe", "Latitude": 39.9888402, "Longitude": -74.0681696, "Adress": "3245 NJ-35, Lavallette, NJ 08735, United States", "PhoneNo": "+1 732-793-7559", "RestaurantServices": "American restaurant", "Speciality": " ", "Website": "http:\/\/channelmarkercafe.com\/", "Google Reviews Rating": 3.9 }, "geometry": { "type": "Point", "coordinates": [ -74.0681696, 39.9888402 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Stewarts Drive-In", "Latitude": 39.946711, "Longitude": -74.079622, "Adress": "1200 NJ-35, Seaside Heights, NJ 08751, United States", "PhoneNo": "+1 732-250-2819", "RestaurantServices": "American restaurant", "Speciality": " ", "Website": "https:\/\/www.stewartsallamerican.com\/", "Google Reviews Rating": 4.1 }, "geometry": { "type": "Point", "coordinates": [ -74.079622, 39.946711 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Baker's Water Street", "Latitude": 39.9501773, "Longitude": -74.1967001, "Adress": "4 Robbins Pkwy, Toms River, NJ 08753, United States", "PhoneNo": "+1 732-240-4800", "RestaurantServices": "Bar & grill", "Speciality": "Riverfront American outfit serving seafood, steaks & drinks in upbeat digs with live music & a deck.", "Website": "https:\/\/www.bakerswaterstreet.com\/", "Google Reviews Rating": 4.2 }, "geometry": { "type": "Point", "coordinates": [ -74.1967001, 39.9501773 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Martell's Waters Edge", "Latitude": 39.91943, "Longitude": -74.1109049, "Adress": "11 Whitecap Way, Bayville, NJ 08721, United States", "PhoneNo": " +1 732-269-3000", "RestaurantServices": "Continental restaurant", "Speciality": "Informal waterfront dock with live music & a lively bar, plus a chic, modern indoor dining room.", "Website": "https:\/\/watersedgeonthebay.com\/", "Google Reviews Rating": 3.9 }, "geometry": { "type": "Point", "coordinates": [ -74.1109049, 39.91943 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Captain's Inn", "Latitude": 39.8296064, "Longitude": -74.1836063, "Adress": "304 E Lacey Rd, Forked River, NJ 08731, United States", "PhoneNo": "+1 609-693-3351", "RestaurantServices": "Seafood restaurant", "Speciality": "Relaxed joint offering a selection of seafood plates & sandwiches, plus a riverfront tiki bar.", "Website": "https:\/\/www.captainsinnnj.com\/", "Google Reviews Rating": 4.5 }, "geometry": { "type": "Point", "coordinates": [ -74.1836063, 39.8296064 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "The Dutchmans", "Latitude": 39.6561043, "Longitude": -74.1887201, "Adress": "2500 E Bay Ave, Manahawkin, NJ 08050, United States", "PhoneNo": "+1 609-494-6910", "RestaurantServices": "Seafood restaurant", "Speciality": " ", "Website": "https:\/\/www.thedutchmans.com\/", "Google Reviews Rating": 3.4 }, "geometry": { "type": "Point", "coordinates": [ -74.1887201, 39.6561043 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "The Boatyard", "Latitude": 39.660847805869345, "Longitude": -74.19712214189925, "Adress": "2304 E Bay Ave, Manahawkin, NJ 08050, United States", "PhoneNo": "+1 609-494-1371", "RestaurantServices": "Beer garden", "Speciality": " ", "Website": "http:\/\/causewayboatyard.com\/", "Google Reviews Rating": 4.1 }, "geometry": { "type": "Point", "coordinates": [ -74.19712214189925, 39.660847805869345] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Dockside Diner", "Latitude": 39.578718, "Longitude": -74.229661, "Adress": "2404 Long Beach Blvd, Long Beach Township, NJ 08008, United States", "PhoneNo": "+1 609-492-8466", "RestaurantServices": "Diner", "Speciality": " ", "Website": "https:\/\/docksidedinerlbi.wordpress.com\/", "Google Reviews Rating": 4.6 }, "geometry": { "type": "Point", "coordinates": [ -74.229661, 39.578718 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Parker's Garage & Oyster Saloon", "Latitude": 39.566169, "Longitude": -74.244562, "Adress": "116 Northwest Ave, Beach Haven, NJ 08008, United States", "PhoneNo": " +1 609-492-1066", "RestaurantServices": "Seafood restaurant", "Speciality": "Easygoing venue with a nostalgic vibe turning out a big menu of hot & cold seafood dishes", "Website": "http:\/\/parkersgaragelbi.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -74.244562, 39.566169 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Polly's Dock and Clamhouse", "Latitude": 39.566144, "Longitude": -74.2449167, "Adress": "112 Northwest Ave, Beach Haven, NJ 08008, United States", "PhoneNo": "+1 609-492-2194", "RestaurantServices": "Restaurant", "Speciality": "No-contact delivery · Curbside pickup · Happy hour food", "Website": "https:\/\/pollysdockclamhouse.square.site\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -74.2449167, 39.566144 ] } },
+{ "type": "Feature", "properties": { "ResturauntName": "Panini Bay Waterfront Restaurant", "Latitude": 39.5806799, "Longitude": -74.3341866, "Adress": "101 Parker Rd, Tuckerton, NJ 08087, United States", "PhoneNo": "+1 609-294-4281", "RestaurantServices": "Italian restaurant", "Speciality": "Italian restaurant offering picturesque views of the bay in an intimate, blue-hued space.", "Website": "https:\/\/paninibay.com\/", "Google Reviews Rating": 4.3 }, "geometry": { "type": "Point", "coordinates": [ -74.3341866, 39.5806799 ] } }
+]
+};
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //  create map object, tell it to live in 'map' div and give initial latitude, longitude, zoom values 
+    var map = L.map('map', {attributionControl:false}).setView([39.9888402,-74.0681696], 11);
+
+    //  add base map tiles from OpenStreetMap and attribution info to 'map' div
+    L.tileLayer('https://api.mapbox.com/styles/v1/farhan32/ckb8x6f120goz1imznorva6zm/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZmFyaGFuMzIiLCJhIjoiY2tiNnk2YXdyMDBoeDJ4cWxhMXYyeWdlayJ9.fWTBC8GDxk6aECNQzhrO0g', {
+    attribution: 'Team-Galaxy'
+    }).addTo(map);
+
+  
+    
+    
+    var ships = L.geoJson(data,{
+        pointToLayer: function(feature, latlng) {
+                var shipicon = L.icon({
+        iconUrl: 'src/animate.gif',
+        iconSize: [55, 55], // size of the icon
+        });
+                return L.marker(latlng, {icon: shipicon});
+            },
+       onEachFeature: function(feature, layer) {
+           layer.bindPopup("<a href='"+feature.properties.Website+"' target='_blank'><h1>"+feature.properties.ResturauntName+"</h1></a></br>"+ feature.properties.RestaurantServices+"</br></br> "+feature.properties.Speciality+"  </br></br>  Address: "+ feature.properties.Adress+"</br></br>Phone: "+ feature.properties.PhoneNo+"")
+    }
+    }
+    ).addTo(map);
+    
+    L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = 'src/logo.png';
+        img.style.width = '200px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'topright' }).addTo(map);
+    
+    
+    
+
+</script>
+
+</body>
+
+</html>
